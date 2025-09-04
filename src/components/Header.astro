@@ -1,0 +1,26 @@
+---
+// src/components/Header.astro
+---
+
+<header class="sticky top-0 bg-white/80 backdrop-blur-md z-10 border-b border-gray-200">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Site Logo/Name -->
+        <a href="/" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+            Camphora Studio
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="/#products" class="text-gray-600 hover:text-blue-600 transition-colors">Products</a>
+            <a href="/articles" class="text-gray-600 hover:text-blue-600 transition-colors">Articles</a>
+            <a href="/about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+        </div>
+
+        <!-- Mobile Menu Button (functionality can be added later) -->
+        <div class="md:hidden">
+            <button class="text-gray-600 hover:text-gray-900">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+</header>
