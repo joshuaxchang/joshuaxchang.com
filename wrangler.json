@@ -1,5 +1,5 @@
 {
-  "name": "far-filament",
+  "name": "joshuaxchang",
   "compatibility_date": "2025-09-04",
   "compatibility_flags": ["nodejs_compat"],
   "main": "./dist/_worker.js/index.js",
