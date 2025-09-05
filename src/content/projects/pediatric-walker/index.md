@@ -1,7 +1,7 @@
 ---
-title: 'Pediatric Walker Project'
-description: 'A write up of the Pediatric walker project.'
-pubDate: '2025-08-18'
+title: 'Pediatric Walker'
+description: 'A 3D printable walker to improve rehab for kids'
+pubDate: '2025-09-01'
 thumbnail: './walker-render.png'
 ---
 

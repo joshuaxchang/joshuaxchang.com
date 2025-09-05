@@ -1,10 +1,10 @@
 // src/content/config.ts
-// This file defines the structure for the article content.
+// This file defines the structure for the project content.
 
 import { defineCollection, z } from 'astro:content';
 
 // Import `image` from the schema helper
-const articlesCollection = defineCollection({
+const projectsCollection = defineCollection({
 	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
@@ -14,6 +14,6 @@ const articlesCollection = defineCollection({
 });
 
 export const collections = {
-	'articles': articlesCollection,
+	'projects': projectsCollection,
 };
 

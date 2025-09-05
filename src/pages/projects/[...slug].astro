@@ -1,0 +1,32 @@
+---
+// src/pages/projects/[...slug].astro
+// This is the template for a single project page.
+
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout title={project.data.title}>
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <project class="prose lg:prose-xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">{project.data.title}</h1>
+      <p class="text-gray-600 italic mb-8">
+        {project.data.pubDate.toLocaleString('en-us', { month: 'long', year: 'numeric' })}
+      </p>
+
+      <Content components={{ img: Image }} />
+    </project>
+  </main>
+</Layout>
