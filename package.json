@@ -6,6 +6,7 @@
     "dev": "astro dev --host",
     "start": "astro dev",
     "build": "astro build",
+    "deploy": "wrangler deploy",
     "preview": "astro preview",
     "astro": "astro"
   },
