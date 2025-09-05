@@ -2,25 +2,20 @@
 // src/pages/projects/[...slug].astro
 // This is the template for a single project page.
 
-import { getEntryBySlug } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  // Get all slugs for projects
-  const projects = await import.meta.glob('../../content/projects/*.md', { eager: true });
-  return Object.keys(projects).map((file) => {
-    const slug = file
-      .replace('../../content/projects/', '')
-      .replace(/\.md$/, '');
-    return { params: { slug } };
-  });
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }, // Pass the full project entry as a prop
+  }));
 }
 
-const { slug } = Astro.params;
-const project = await getEntryBySlug('projects', slug);
-
-if (!project) throw new Error(`Project not found: ${slug}`);
+// Get the project from Astro.props
+const { project } = Astro.props;
 
 const { Content } = await project.render();
 ---
@@ -29,7 +24,8 @@ const { Content } = await project.render();
   <main class="max-w-4xl mx-auto px-4 py-12">
     <div class="mb-8">
         <a href="/#projects" class="text-brand-primary font-semibold hover:underline">
-            &larr; Back to projects
+            &larr;
+            Back to projects
         </a>
     </div>
     <article class="prose lg:prose-xl max-w-none">
@@ -42,6 +38,7 @@ const { Content } = await project.render();
       )}
 
       <Content components={{ img: Image }} />
+  
     </article>
   </main>
 </Layout>
