@@ -13,10 +13,35 @@
             </a>
         </div>
         <div class="md:hidden">
-            <button class="text-gray-600 hover:text-gray-900">
+            <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
     </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+        <nav class="container mx-auto px-8 pb-4 flex flex-col space-y-4">
+            <a href="/#projects" class="font-semibold text-gray-600 hover:text-brand-primary transition-colors">Projects</a>
+            <a href="YOUR_STORE_LINK_HERE" class="bg-brand-primary text-white text-sm font-semibold py-2 px-4 rounded-lg hover:bg-brand-primary-hover transition-colors w-max">
+                My Store
+            </a>
+        </nav>
+    </div>
 </header>
 
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close the mobile menu when a link is clicked
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+</script>
