@@ -1,18 +1,21 @@
 {
-  "name": "far-filament",
+  "name": "joshuaxchang",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev --host",
+    "start": "astro dev",
     "build": "astro build",
-    "deploy": "wrangler deploy",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.7",
-    "@tailwindcss/vite": "^4.1.12",
-    "astro": "^5.13.5",
-    "tailwindcss": "^4.1.12"
+    "@astrojs/cloudflare": "^11.0.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.12.2",
+    "tailwindcss": "^3.4.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13"
   }
 }
