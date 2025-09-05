@@ -16,3 +16,15 @@
   aspect-ratio: 16 / 9;
   width: 100%;
 }
+
+.fb-video-wrapper {
+  max-width: 560px; /* Sets the max size of the video */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fb-video-wrapper iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 560 / 440;
+}
