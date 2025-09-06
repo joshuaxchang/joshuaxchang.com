@@ -28,6 +28,9 @@
   "devDependencies": {
     "wrangler": "4.21.x"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "astro": "astro",
     "build": "astro build",
