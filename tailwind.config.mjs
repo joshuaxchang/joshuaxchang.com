@@ -7,12 +7,13 @@ export default {
     theme: {
         extend: {
             colors: {
-                'brand-bg': '#FCFBF8', 
+                'brand-bg': '#F1ECE4', // New background from logo
+                'brand-card': '#FCFBF8', // New color for cards
                 'brand-text': '#4A4A4A', 
-                'brand-primary': '#87A96B', 
-                'brand-primary-hover': '#76945B',
-                'brand-accent': '#EADDCA', 
-                'brand-accent-light': '#F0EBE3', 
+                'brand-primary': '#5F7A52', // New Joshua Tree green
+                'brand-primary-hover': '#4C6141', // Darker green for hover
+                'brand-accent': '#F1AB50', // New sun yellow
+                'brand-accent-light': '#FBEFDD', // Lighter sun yellow for gradient
             },
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
@@ -20,8 +21,8 @@ export default {
                 serif: ['EB Garamond', ...defaultTheme.fontFamily.serif],
             },
             boxShadow: {
-                'card': '0 4px 12px 0 rgba(0, 0, 0, 0.05)',
-                'card-hover': '0 8px 24px 0 rgba(135, 169, 107, 0.15)',
+                'card': '0 6px 16px 0 rgba(74, 74, 74, 0.08)', // Deeper, softer neutral shadow
+                'card-hover': '0 10px 30px 0 rgba(74, 74, 74, 0.2)', // Stronger, green-tinted hover shadow
             },
         },
     },

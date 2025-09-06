@@ -18,7 +18,7 @@ projects.sort((a, b) => {
 <Layout title="Joshua Chang | Designer & Developer">
   <main>
     <!-- Hero Section -->
-    <section class="py-24 px-4 bg-gradient-to-b from-green-50 to-brand-bg">
+    <section class="py-24 px-4 bg-gradient-to-b from-brand-primary/30 to-brand-bg">
       <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
         
         <!-- Headshot Image (Made Larger) -->
@@ -53,7 +53,7 @@ projects.sort((a, b) => {
           {projects.map((project) => (
             <a 
               href={`/projects/${project.slug}`} 
-              class="group block bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
+              class="group block bg-brand-card rounded-lg shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
             >
               {project.data.thumbnail ? (
                 // If a thumbnail exists, render the Image
