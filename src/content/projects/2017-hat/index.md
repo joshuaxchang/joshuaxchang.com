@@ -1,6 +1,6 @@
 ---
 title: 'Graduation Hat'
-description: 'Motorized tassel and an LED display'
+description: 'Motorized Tassel and an LED Lisplay'
 pubDate: '2017-12-22'
 thumbnail: './fb-screenshot.png'
 ---
