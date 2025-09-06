@@ -32,11 +32,12 @@ const { Content } = await project.render();
     <article class="prose prose-xl max-w-none">
       <h1 class="font-heading text-4xl font-bold mb-4 text-brand-text">{project.data.title}</h1>
       
-      {project.data.pubDate && (
+      <!-- {project.data.pubDate && (
         <p class="text-gray-500 italic mb-8">
-          {project.data.pubDate.toLocaleString('en-us', { month: 'long', year: 'numeric' })}
+          {project.data.pubDate.toLocaleString('en-us', {year: 'numeric' })}
         </p>
       )}
+    -->
 
       <Content components={{ img: Image, YouTube: YouTube }} />
   
