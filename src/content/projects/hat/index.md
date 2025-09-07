@@ -1,8 +1,8 @@
 ---
-title: 'Graduation Hat'
+title: 'Graduation Cap'
 description: 'Motorized Tassel and an LED Lisplay'
 pubDate: '2017-12-22'
-thumbnail: './fb-screenshot.png'
+thumbnail: './hat.png'
 ---
 
 I made an auto tassel turning hat with an LED display. The process video was featured on the Prude University Facebook Page.
