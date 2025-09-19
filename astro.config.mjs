@@ -16,4 +16,8 @@ export default defineConfig({
     },
   }),
 
+  redirects: {
+    '/walker': '/projects/walker',
+  },
+
 });
