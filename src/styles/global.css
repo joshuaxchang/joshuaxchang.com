@@ -28,3 +28,11 @@
   height: auto;
   aspect-ratio: 560 / 440;
 }
+
+.chinese-name rt {
+  font-size: 0.4em;
+  font-family: theme('fontFamily.sans');
+  color: #6b7280;
+  font-weight: 500;
+  transform: translateY(-5px);
+}
