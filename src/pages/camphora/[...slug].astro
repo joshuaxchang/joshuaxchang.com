@@ -1,0 +1,34 @@
+---
+// src/pages/camphora/[...slug].astro
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+// This function builds a page for every file in the 'camphora' collection
+export async function getStaticPaths() {
+  const entries = await getCollection('camphora');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Layout title={entry.data.title}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    
+    <div class="mb-8">
+      <a href="/camphora" class="text-brand-primary font-semibold hover:underline">
+        &larr; Back to Camphora Studio
+      </a>
+    </div>
+
+    <article class="prose prose-xl max-w-none">
+      <h1 class="font-heading text-4xl font-bold mb-4 text-brand-text">{entry.data.title}</h1>
+      <Content components={{ img: Image }} />
+    </article>
+    
+  </main>
+</Layout>

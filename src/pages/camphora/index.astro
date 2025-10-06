@@ -1,0 +1,66 @@
+---
+// src/pages/camphora/index.astro
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const categoryPages = await getCollection('camphora');
+
+categoryPages.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+---
+<Layout title="Camphora Studio">
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    
+    <div class="mb-8">
+      <a href="/#projects" class="text-brand-primary font-semibold hover:underline">
+        &larr; Back to Portfolio
+      </a>
+    </div>
+
+    <article class="prose prose-xl max-w-none mb-8">
+      <h1 class="font-heading text-4xl font-bold mb-4 text-brand-text">Camphora Studio</h1>
+      <p>Influenced by the COVID-era focus on air quality, I wanted an air quality monitor and an air purifier for myself and my family. The available products didn’t quite suit my needs, so I decided to create my own. This endeavor grew into a startup with two main products: an air quality monitor and a wirelessly linked air purifier.</p>
+      <p>My design is guided by these principles:</p>
+        <ol>
+            <li>
+                <strong>Ease of Use.</strong> My parents should be able to use them without much instruction from me. The air quality monitor and the purifier link directly using the ESP-NOW protocol, bypassing any need for a complex app or WiFi setup, which is a common pain point in many IoT devices.
+            </li>
+            <li>
+                <strong>Respect for Users.</strong> Many “smart” devices require an app, an account, or a constant internet connection to function. The user no longer truly “owns” the product, as the company can collect data, display ads, or stop service entirely. The primary function of my product doesn't need a connection to your home WiFi, though there is the option to connect and integrate into a home automation ecosystem. Firmware updates are optional, and care was taken to make the update process as seamless as possible.
+            </li>
+            <li>
+                <strong>Hackable.</strong> I personally prefer products that I can tinker with, and I want the product I make to be something I would want to buy. While the products are designed to be modifiable, this decision does not overrule the ease of use for non-enthusiasts.
+            </li>
+            <li>
+                <strong>Transparency.</strong> I learned a lot from others who publish their designs, and I want to share my work in return. The code and schematics are available, and I'm documenting my journey here. My air purifier design is almost entirely 3D printed. Unlike complex open hardware that requires industrial tools, the barrier to entry is extremely low. Knowing this, I'm still offering the files on a "pay what you want" basis for personal, non-commercial use. My priority is getting this design into the hands of people who need it, without cost being a barrier.
+            </li>
+        </ol>
+    </article>
+        <div class="text-center my-10">
+          <a 
+            href="https://camphorastudio.com" 
+            class="inline-block bg-brand-primary text-brand-card font-bold text-xl px-8 py-3 rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-card-hover"
+          >
+            Visit the Store
+          </a>
+        </div>
+    <article class="prose prose-xl max-w-none mb-8">
+      <p>The following pages are my journal of this quest. To an experienced developer or designer, some of the challenges I document might seem trivial. My intent is to show the entire process for those who are curious. It’s a glimpse into the hidden details and care that go into creating a product from scratch.</p>
+    </article>
+
+    <nav>
+      <div class="flex flex-col gap-6">
+        {categoryPages.map(page => (
+          <a 
+            href={`/camphora/${page.slug}`} 
+            class="group block text-left p-6 bg-brand-card rounded-lg shadow-card hover:shadow-card-hover transition-all duration-300 transform hover:-translate-y-1.5"
+          >
+            <h3 class="font-heading text-2xl font-bold text-brand-text mb-1">
+              {page.data.title}
+            </h3>
+            <p class="text-lg text-gray-500">{page.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </nav>
+  </main>
+</Layout>

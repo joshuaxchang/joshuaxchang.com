@@ -13,7 +13,17 @@ const projectsCollection = defineCollection({
 	}),
 });
 
+// This collection is for your category pages (3D modeling, PCB, etc.)
+const camphoraCollection = defineCollection({
+	schema: z.object({
+		title: z.string(),
+		description: z.string().optional(),
+		order: z.number().optional(), 
+	}),
+});
+
 export const collections = {
 	'projects': projectsCollection,
+	'camphora': camphoraCollection,
 };
 
