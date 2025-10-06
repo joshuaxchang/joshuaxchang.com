@@ -1,6 +1,6 @@
 ---
 title: "Building a Thoughtful E-commerce Experience"
-description: "A journal of the design choices and technical challenges in creating a digital storefront"
+description: "The design choices and technical challenges in creating a digital storefront"
 order: 2
 ---
 
@@ -34,6 +34,13 @@ This confirmation method was a deliberate choice. Many sites will open a cart dr
 
 The cart drawer itself uses a hybrid debounce logic for quantity updates. If a user rapidly clicks the “+” button, sending a server request for each click would cause a half second delay every click. Instead, “debouncing” waits for the user to stop clicking for 400ms and then sends a single, consolidated update. This makes the interface feel fast while keeping backend communication clean. However, when a user clicks to remove an item (a more decisive action), the request is sent immediately for maximum responsiveness.
 
+#### Consistent Button Behavior: The Email Signup & Captcha Form
+The same principles of feedback and respect for the user's flow apply to secondary actions, like the email signup form. This form also needs to handle API delays, but with an added complication: Shopify's unpredictable Captcha page.
+
+This un-themeable page would confusingly show the site's footer again, presenting a duplicate signup form and an ambiguous "Submit" button. To solve this, a JavaScript snippet now detects the `/challenge` URL and adds a class to the body. A CSS rule then hides the footer entirely on that page, creating a focused, less confusing experience. The same rule is used to style the default Captcha button to match the theme's branding.
+
+After a successful signup, the user is redirected back, and a brief "pulse" animation on the button draws their eye to the "Subscribed!" confirmation. This temporary feedback is intentional for a low-stakes action, in contrast to the high-stakes contact form, which displays a persistent success message.
+
 #### Solving the Back-Forward Cache Bug
 A recurring issue appeared on mobile browsers, particularly Safari on iOS. If a user navigated to the checkout page and then used the browser's “back” button, the buttons on the product page would be stuck in their loading state. This is caused by an aggressive caching feature called the Back-Forward Cache (bfcache), which creates a snapshot of the page, including the button's temporary loading state.
 
@@ -43,8 +50,6 @@ The fix was to implement a `pageshow` event listener. This script checks if a pa
 The site uses overlays in two key places, but with a subtle difference in implementation to suit the user's intent.
 * **Product Gallery:** When a user clicks to zoom in on a product image, the full-screen lightbox uses a background blur. The user's goal is to inspect the product in detail, and the blur removes background distractions, creating an immersive viewing environment.
 * **Cart Drawer:** When the cart slides out, the background is dimmed but not blurred. Here, the user often wants to reference the page they were just on to confirm their selection. Maintaining this context is more important than creating immersion, so the background remains legible.
-
-## The Craft of Development
 
 #### The Mobile Menu Case Study
 The mobile menu proved to be a significant technical challenge. The design goal was a modern “glass effect” menu that dropped down from a sticky header. The first issue appeared immediately, even in desktop browser emulators. When the page was scrolled to the very top, opening the menu would push the entire page content down, causing a jarring layout shift.
