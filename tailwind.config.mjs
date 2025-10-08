@@ -29,6 +29,22 @@ export default {
                     css: {
                         '--tw-prose-headings': theme('colors.brand-text'),
                         '--tw-prose-bold': theme('colors.brand-text'),
+
+                        code: {
+                            color: theme('colors.brand-text'),
+                            backgroundColor: theme('colors.gray.100'),
+                            borderRadius: theme('borderRadius.md'),
+                            padding: `${theme('spacing.1')} ${theme('spacing.2')}`,
+                            fontWeight: '500',
+                        },
+                        'code::before': {
+                            content: '""',
+                        },
+                        'code::after': {
+                            content: '""',
+                        },
+
+
                         h1: {
                             color: 'var(--tw-prose-headings)',
                         },

@@ -22,16 +22,16 @@ categoryPages.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
       <p>My design is guided by these principles:</p>
         <ol>
             <li>
-                <strong>Ease of Use.</strong> My parents should be able to use them without much instruction from me. The air quality monitor and the purifier link directly using the ESP-NOW protocol, bypassing any need for a complex app or WiFi setup, which is a common pain point in many IoT devices.
+                <strong>Ease of Use.</strong> My parents should be able to use them without much instruction. No app or web portal is required for primary functions: the air purifier uses a simple physical knob, and the air quality monitor has a large display for clear output. The two products link directly using the ESP-NOW protocol, bypassing the complex WiFi pairing that is a common pain point in many IoT devices. This focus on simplicity extends to advanced users as well; for Home Assistant, the device is auto-discoverable by ESPHome to ensure the integration process is seamless.
             </li>
             <li>
-                <strong>Respect for Users.</strong> Many “smart” devices require an app, an account, or a constant internet connection to function. The user no longer truly “owns” the product, as the company can collect data, display ads, or stop service entirely. The primary function of my product doesn't need a connection to your home WiFi, though there is the option to connect and integrate into a home automation ecosystem. Firmware updates are optional, and care was taken to make the update process as seamless as possible.
+                <strong>Respect for Users.</strong> Many “smart” devices require an app, an account, or a constant internet connection. This means the user never truly “owns” the product, as the company can display ads, sell data, or shut down the service entirely. I designed my products on the opposite principle: their primary functions are self-contained and work entirely offline, requiring no connection to the user's home WiFi. The optional firmware updates are designed to be user-initiated and straightforward.
             </li>
             <li>
                 <strong>Hackable.</strong> I personally prefer products that I can tinker with, and I want the product I make to be something I would want to buy. While the products are designed to be modifiable, this decision does not overrule the ease of use for non-enthusiasts.
             </li>
             <li>
-                <strong>Transparency.</strong> I learned a lot from others who publish their designs, and I want to share my work in return. The code and schematics are available, and I'm documenting my journey here. My air purifier design is almost entirely 3D printed. Unlike complex open hardware that requires industrial tools, the barrier to entry is extremely low. Knowing this, I'm still offering the files on a "pay what you want" basis for personal, non-commercial use. My priority is getting this design into the hands of people who need it, without cost being a barrier.
+                <strong>Transparency.</strong> I learned a lot from others who publish their designs, and I want to share my work in return. The code and schematics are available, and I'm documenting my journey here. My air purifier design is almost entirely 3D printed. Unlike complex open hardware that requires industrial tools, the barrier to entry is extremely low. Knowing this, I'm still offering the files on a "pay what you want" basis for personal use. My priority is getting this design into the hands of people who need it, without cost being a barrier.
             </li>
         </ol>
     </article>
@@ -48,7 +48,7 @@ categoryPages.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
     </article>
 
     <nav>
-      <div class="flex flex-col gap-6">
+      <div id="journal" class="flex flex-col gap-6">
         {categoryPages.map(page => (
           <a 
             href={`/camphora/${page.slug}`} 
