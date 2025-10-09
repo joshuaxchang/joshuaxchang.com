@@ -5,7 +5,7 @@ pubDate: '2017-12-22'
 thumbnail: './hat.png'
 ---
 
-I made an auto tassel turning hat with an LED display. The process video was featured on the Prude University Facebook Page.
+I made an auto tassel turning hat with an LED display. The process video was featured on the Purdue University Facebook Page.
 
 <div class="fb-video-wrapper my-8">
   <iframe
