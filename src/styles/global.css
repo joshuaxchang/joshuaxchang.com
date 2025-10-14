@@ -5,7 +5,7 @@
 
 /* === ADD THESE CUSTOM STYLES FOR PROSE LINKS === */
 .prose a {
-  @apply text-brand-primary font-medium no-underline transition-colors;
+  @apply text-brand-text-green font-medium no-underline transition-colors;
 }
 
 .prose a:hover {

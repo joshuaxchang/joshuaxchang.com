@@ -11,6 +11,7 @@ export default {
                 'brand-card': '#FCFBF8', // New color for cards
                 'brand-text': '#4A4A4A', 
                 'brand-primary': '#5F7A52', // New Joshua Tree green
+                'brand-text-green': '#3E5235',   // Darker green for high-contrast text/headings
                 'brand-primary-hover': '#4C6141', // Darker green for hover
                 'brand-accent': '#F1AB50', // New sun yellow
                 'brand-accent-light': '#FBEFDD', // Lighter sun yellow for gradient
