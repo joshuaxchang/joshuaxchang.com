@@ -4,7 +4,7 @@ description: "Physically Testing and Virtually Simulating the ideal Fan Speed Of
 order: 2
 ---
 
-When two fans spin at slightly different speeds, their interaction can cause an undesirable intermittent sound from the fan noise going in and out of phase. Due to manufacturing variations, there is bound to be some speed difference between fans. [Noctua has a great explanation of this phenomenon](https://www.noctua.at/en/expertise/tech/fan-speed-offset-explained). The goal is to push this beat frequency faster so it becomes less perceptible. A slow, oscillating "throb" is annoying, but if the offset is large enough, the beat frequency becomes fast enough to blend harmlessly into the background motor noise.
+When two fans spin at slightly different speeds, their interaction can cause an undesirable intermittent sound from the fan noise going in and out of phase. Due to manufacturing variations, there is bound to be some speed difference between fans. [Noctua has a great explanation of this phenomenon](https://www.noctua.at/en/expertise/tech/fan-speed-offset-explained). The goal is to push this beat frequency faster so it becomes less perceptible. A slow, oscillating "throb" is annoying, but if the offset is large enough, the beat frequency becomes fast enough to blend into the background motor noise.
 
 I wanted to test this phenomenon for a 5-fan setup in preparation for designing my own CR Box style PC fan powered air purifier. Based on my fan research, I am using the 140mm Arctic P14 Pro fans, which have both high static pressures and impressive volumetric flow, while being quite affordable. The max speed is rather loud, so for most of its operation I intend to run them at 50% speed unless my air quality monitor detects pollution. 
 
@@ -18,7 +18,7 @@ The first test involves running the 5 fans at a consistent speed difference.
 
 <div style={{overflowX: 'auto'}}>
 
-| Scenario | Five Fan Speeds (%) | Playback |
+| Scenario | Five Fan Speeds (%) | Recording |
 | :--- | :--- | :--- |
 | **100% Base** | `100, 100, 100, 100, 100` | <audio controls preload="none" style={{width: '100%', minWidth: '200px'}}><source src="/fan_audio/100-0.mp3" type="audio/mp3" /></audio> |
 | **100% (Δ1.0)** | `100, 99, 98, 97, 96` | <audio controls preload="none" style={{width: '100%', minWidth: '200px'}}><source src="/fan_audio/100-1.mp3" type="audio/mp3" /></audio> |
@@ -43,7 +43,7 @@ The next test involves running one or two fans at a slower speed.
 
 <div style={{overflowX: 'auto'}}>
 
-| Scenario | Five Fan Speeds (%) | Playback |
+| Scenario | Five Fan Speeds (%) | Recording |
 | :--- | :--- | :--- |
 | **100% Base** | `100, 100, 100, 100, 100` | <audio controls preload="none" style={{width: '100%', minWidth: '200px'}}><source src="/fan_audio/100_100_100_100_100.mp3" type="audio/mp3" /></audio> |
 | **100% (1 Fan ↓)** | `100, 100, 100, 100, 99` | <audio controls preload="none" style={{width: '100%', minWidth: '200px'}}><source src="/fan_audio/100_100_100_100_99.mp3" type="audio/mp3" /></audio> |
@@ -67,7 +67,7 @@ I generated these audio files by summing sine waves in Python. The 7 blade fan w
 
 <div style={{overflowX: 'auto'}}>
 
-| Scenario | Offset Strategy | Playback |
+| Scenario | Offset Strategy | Generated Audio |
 | :--- | :--- | :--- |
 | **Test A** | **Base Cluster** (±2 RPM variance) | <audio controls preload="none" style={{width: '100%', minWidth: '200px'}}><source src="/fan_audio/sim_3000_a.mp3" type="audio/mp3" /></audio> |
 | **Test B** | **1 Fan Drop** (-1% / -30 RPM) | <audio controls preload="none" style={{width: '100%', minWidth: '200px'}}><source src="/fan_audio/sim_3000_b.mp3" type="audio/mp3" /></audio> |
@@ -81,7 +81,7 @@ I generated these audio files by summing sine waves in Python. The 7 blade fan w
 
 <div style={{overflowX: 'auto'}}>
 
-| Scenario | Offset Strategy | Playback |
+| Scenario | Offset Strategy | Generated Audio |
 | :--- | :--- | :--- |
 | **Test A** | **Base Cluster** (±2 RPM variance) | <audio controls preload="none" style={{width: '100%', minWidth: '200px'}}><source src="/fan_audio/sim_1500_a.mp3" type="audio/mp3" /></audio> |
 | **Test B** | **1 Fan Drop** (-1% / -15 RPM) | <audio controls preload="none" style={{width: '100%', minWidth: '200px'}}><source src="/fan_audio/sim_1500_b.mp3" type="audio/mp3" /></audio> |
@@ -91,4 +91,4 @@ I generated these audio files by summing sine waves in Python. The 7 blade fan w
 </div>
 
 ## Conclusions
-With these tests and simulations, we can see that running just 1 fan at 1-2% slower than the rest increases the beat frequency. This higher frequency beat is much less perceptible than the slow, throbbing drone produced when all the fans are commanded to run at the same speed. Increasing the stagger or increasing the slow fan count does not improve the beat frequency issue, yet it decreases performance by spinning many of the fans slower. With my final design, I will have 1 fan PWM header controlled separately to run one fan at 2% slower than the rest.
+With these tests and simulations, we can see that running just 1 fan at 1-2% slower than the rest increases the beat frequency. This higher frequency beat should be less perceptible than the slow, throbbing drone produced when all the fans are commanded to run at the same speed. Increasing the stagger or increasing the slow fan count does not improve the beat frequency issue, yet it decreases performance by spinning many of the fans slower. With my final design, I will have 1 fan PWM header controlled separately to run one fan at 2% slower than the rest.
