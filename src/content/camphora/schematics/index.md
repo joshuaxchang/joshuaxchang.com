@@ -1,6 +1,6 @@
 ---
 title: "Circuit Design & Layout"
-description: "A Deep Dive into the Schematics and PCB Layout"
+description: "A Deep Dive Into the Schematics and PCB Layout"
 order: 4
 ---
 
