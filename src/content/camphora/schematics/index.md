@@ -6,11 +6,11 @@ order: 4
 
 A technical overview of the circuit board design, highlighting the specific engineering trade-offs and design logic used to bring the hardware to life.
 
-### Fan Controller Power Management
+## Fan Controller Power Management
 
-![power OR-ing and fan switch schematics](./power-oring-fan-switch.png)
+### Power OR-ing 
 
-#### Power OR-ing 
+![power OR-ing schematics](./power-oring.png)
 
 The board accepts power from two sources: a USB-C port and a 12V DC barrel jack. The USB input voltage varies (5V/9V/12V) based on PD negotiation, while the barrel jack is a fixed 12V.
 
@@ -18,7 +18,9 @@ I needed to prevent the 12V jack from back-feeding into the USB port, which woul
 
 To solve this, I used the TPS2121 (`U4`). This chip functions as an "ideal diode" controller. It monitors both inputs `VBUS` and `VJACK` and automatically gates the higher voltage through to the main rail `VHV`. This protects the input ports and eliminates the heat issue associated with standard diodes.
 
-#### Fan Rail Switch & Logic
+### Fan Rail Switch & Logic
+
+![fan power schematics](./fan-power.png)
 
 Standard 5V computer USB ports cannot supply enough current to power multiple 12V fans. I designed this circuit to ensure the fan rail `VFAN` remains OFF unless the board is receiving at least 9V (via USB-PD or the barrel jack).
 
@@ -32,6 +34,16 @@ The logic chain relies on detecting the voltage of the main rail `VHV`:
 
 Inductive Load Protection `D2`: I added a flyback diode (`D2`) across the fan output. Since fans are inductive loads, they generate a negative voltage spike when power is cut. `D2` shunts this current, protecting the MOSFETs from damage.
 
-#### Current Capacity & Protection
+### Current Capacity & Protection
 
 All components were selected to handle 4A continuous current, which is required to drive ten Arctic P14 Pro fans at full speed alongside the ESP32 and LEDs. I calculated the PCB trace widths to support this thermal load and integrated self-resetting (PTC) fuses for overcurrent protection.
+
+### Buck Converters & LDO for the LEDs & ESP32
+
+![power conversion and LED schematics](./power-led.png)
+
+The ESP32 microcontroller runs on 3.3V. While a standard linear regulator (LDO) is simple, it works by burning off excess voltage as heat. This is fine for small drops like 5V USB line to 3.3V, but extremely inefficient when stepping down from 12V fan power line to 3.3V. Instead, I used a buck converter to efficiently convert the voltage with minimal energy loss.
+
+I tuned this converter to output 4V because the RGB status LEDs can require up to 3.6V due to manufacturing variance. On a standard 3.3V rail, some LEDs would light up while others would be too dim.
+
+I used a small secondary LDO to step the 4V down to 3.3V for the ESP32, while the LEDs run directly off the 4V rail. To control them, I wired the ESP32 to the negative side of the LEDs. When the chip outputs 3.3V, the small voltage difference keeps the LED off. When the pin switches to Ground, the full 4V flows through, turning the light on.
