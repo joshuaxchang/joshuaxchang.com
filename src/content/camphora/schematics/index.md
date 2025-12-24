@@ -38,12 +38,12 @@ Inductive Load Protection `D2`: I added a flyback diode (`D2`) across the fan ou
 
 All components were selected to handle 4A continuous current, which is required to drive ten Arctic P14 Pro fans at full speed alongside the ESP32 and LEDs. I calculated the PCB trace widths to support this thermal load and integrated self-resetting (PTC) fuses for overcurrent protection.
 
-### Buck Converters & LDO for the LEDs & ESP32
+### Buck Converter & LDO
 
 ![power conversion and LED schematics](./power-led.png)
 
-The ESP32 microcontroller runs on 3.3V. While a standard linear regulator (LDO) is simple, it works by burning off excess voltage as heat. This is fine for small drops like 5V USB line to 3.3V, but extremely inefficient when stepping down from 12V fan power line to 3.3V. Instead, I used a buck converter to efficiently convert the voltage with minimal energy loss.
+The ESP32 microcontroller runs on 3.3V. While a standard linear regulator (LDO) is a simple way to supply 3.3V, it works by burning off excess voltage as heat. This is fine for small drops like 5V USB line to 3.3V, but extremely inefficient when stepping down from 12V fan power line to 3.3V. Instead, I used a buck converter to efficiently convert the voltage with minimal energy loss.
 
-I tuned this converter to output 4V because the RGB status LEDs can require up to 3.6V due to manufacturing variance. On a standard 3.3V rail, some LEDs would light up while others would be too dim.
+I tuned this converter to output 4V because the RGB status LEDs can require up to 3.6V forward voltage due to manufacturing variance. On a standard 3.3V rail, some LEDs would light up while others would be too dim.
 
-I used a small secondary LDO to step the 4V down to 3.3V for the ESP32, while the LEDs run directly off the 4V rail. To control them, I wired the ESP32 to the negative side of the LEDs. When the chip outputs 3.3V, the small voltage difference keeps the LED off. When the pin switches to Ground, the full 4V flows through, turning the light on.
+I used a small secondary LDO to step the 4V down to 3.3V for the ESP32, while the LEDs run directly off the 4V rail. The LEDs are controlled by low-side-switching through a N-Type MOSFET. 
